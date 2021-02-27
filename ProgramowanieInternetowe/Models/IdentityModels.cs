@@ -18,6 +18,7 @@ namespace ProgramowanieInternetowe.Models
         }
     }
 
+    // Klasa IdentityDbContext dziedziczy z klasy DbContext dodajac rzeczy zwiazane z rejestracja i logowaniem
     public class ProgramowanieInternetoweDbContext : IdentityDbContext<ApplicationUser>
     {
         public ProgramowanieInternetoweDbContext()
