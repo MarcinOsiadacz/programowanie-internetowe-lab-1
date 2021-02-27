@@ -177,10 +177,15 @@
     <Compile Include="Migrations\202102271549238_InitialCreate.Designer.cs">
       <DependentUpon>202102271549238_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102271659108_MissingPersonModelAdded.cs" />
+    <Compile Include="Migrations\202102271659108_MissingPersonModelAdded.Designer.cs">
+      <DependentUpon>202102271659108_MissingPersonModelAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MissingPersonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -260,6 +265,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202102271549238_InitialCreate.resx">
       <DependentUpon>202102271549238_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102271659108_MissingPersonModelAdded.resx">
+      <DependentUpon>202102271659108_MissingPersonModelAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

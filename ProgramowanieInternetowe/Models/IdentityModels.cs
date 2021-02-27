@@ -30,5 +30,7 @@ namespace ProgramowanieInternetowe.Models
         {
             return new ProgramowanieInternetoweDbContext();
         }
+
+        public DbSet<MissingPersonModel> MissingPersons { get; set; }
     }
 }
