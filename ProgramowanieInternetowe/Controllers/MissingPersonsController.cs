@@ -14,16 +14,17 @@ namespace ProgramowanieInternetowe.Controllers
         // GET: MissingPersons
         public ActionResult Index()
         {
-            return View(_db
-                .MissingPersons
-                .ToList()
-                );
+            var missingPersons = _db.MissingPersons.ToList();
+
+            return View(missingPersons);
         }
 
         // GET: MissingPersons/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var missingPerson = _db.MissingPersons.Where(p => p.Id == id).FirstOrDefault();
+
+            return View(missingPerson);
         }
 
         // GET: MissingPersons/Create
@@ -32,21 +33,21 @@ namespace ProgramowanieInternetowe.Controllers
             return View();
         }
 
-        //// POST: MissingPersons/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+        // POST: MissingPersons/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: MissingPersons/Edit/5
         //public ActionResult Edit(int id)
