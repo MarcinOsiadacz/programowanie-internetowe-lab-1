@@ -39,7 +39,16 @@ namespace ProgramowanieInternetowe.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                var missingPersonToCreate = new MissingPersonModel()
+                {
+                    FirstName = collection["FirstName"],
+                    LastName = collection["LastName"],
+                    Gender = Convert.ToBoolean(collection["Gender"]),
+                    PhotoUrl = "~/Content/img/1.jpg"
+                };
+
+                _db.MissingPersons.Add(missingPersonToCreate);
+                _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

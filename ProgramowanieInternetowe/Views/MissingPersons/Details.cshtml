@@ -31,7 +31,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Gender)
+            @(Model.Gender ? "Male" : "Female")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoUrl)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.PhotoUrl)" width="300" height="300"/>     
         </dd>
 
     </dl>
