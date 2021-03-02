@@ -169,11 +169,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HttpPostedFilesBase.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MissingPersonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FileUploadHelper.cs" />
     <Compile Include="Migrations\202102271549238_InitialCreate.cs" />
     <Compile Include="Migrations\202102271549238_InitialCreate.Designer.cs">
       <DependentUpon>202102271549238_InitialCreate.cs</DependentUpon>
@@ -255,7 +257,7 @@
     <Content Include="Views\MissingPersons\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Images\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>

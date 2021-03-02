@@ -1,6 +1,8 @@
-﻿using ProgramowanieInternetowe.Models;
+﻿using ProgramowanieInternetowe.Helpers;
+using ProgramowanieInternetowe.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,16 +37,26 @@ namespace ProgramowanieInternetowe.Controllers
 
         // POST: MissingPersons/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(MissingPersonModel collection)
         {
             try
             {
+                string photoPath = "~/Content/img/default.jpg";
+
+                if (collection.PhotoFile != null)
+                {
+                    string pic = Path.GetFileName(collection.PhotoFile.FileName);
+
+                    collection.PhotoFile.SaveAs(Path.Combine(Server.MapPath("~/Content/img"), pic));
+                    photoPath = "~/Content/img/" + pic;
+                };
+
                 var missingPersonToCreate = new MissingPersonModel()
                 {
-                    FirstName = collection["FirstName"],
-                    LastName = collection["LastName"],
-                    Gender = Convert.ToBoolean(collection["Gender"]),
-                    PhotoUrl = "~/Content/img/1.jpg"
+                    FirstName = collection.FirstName,
+                    LastName = collection.LastName,
+                    Gender = collection.Gender,
+                    PhotoUrl = photoPath
                 };
 
                 _db.MissingPersons.Add(missingPersonToCreate);
@@ -57,6 +69,21 @@ namespace ProgramowanieInternetowe.Controllers
                 return View();
             }
         }
+
+        private string FileUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+                return "~/Content/img/default.jpg";
+            else
+            {
+                string pic = Path.GetFileName(file.FileName);
+                string path = "~/Content/img" + pic;
+
+                file.SaveAs(path);
+                return path;
+            }    
+        }
+
 
         //// GET: MissingPersons/Edit/5
         //public ActionResult Edit(int id)
