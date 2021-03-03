@@ -254,6 +254,7 @@
     <Content Include="Views\MissingPersons\Details.cshtml" />
     <Content Include="Views\MissingPersons\Create.cshtml" />
     <Content Include="Views\MissingPersons\Edit.cshtml" />
+    <Content Include="Views\MissingPersons\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

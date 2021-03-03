@@ -110,26 +110,33 @@ namespace ProgramowanieInternetowe.Controllers
             }
         }
 
-        //// GET: MissingPersons/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: MissingPersons/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var missingPersonToEdit = _db.MissingPersons.Where(p => p.Id == id).FirstOrDefault();
 
-        //// POST: MissingPersons/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+            return View(missingPersonToEdit);
+        }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: MissingPersons/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                var missingPersonToDelete = _db.MissingPersons.Where(p => p.Id == id).FirstOrDefault();
+
+                if (missingPersonToDelete != null)
+                {
+                    _db.MissingPersons.Remove(missingPersonToDelete);
+                    _db.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
