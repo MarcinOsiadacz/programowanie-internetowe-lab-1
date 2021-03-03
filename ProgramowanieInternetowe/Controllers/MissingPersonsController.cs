@@ -1,5 +1,4 @@
-﻿using ProgramowanieInternetowe.Helpers;
-using ProgramowanieInternetowe.Models;
+﻿using ProgramowanieInternetowe.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,14 +40,15 @@ namespace ProgramowanieInternetowe.Controllers
         {
             try
             {
-                string photoPath = "~/Content/img/default.jpg";
+                string photoUrlToBeAssigned = "~/Content/img/default.jpg";
 
                 if (collection.PhotoFile != null)
                 {
                     string pic = Path.GetFileName(collection.PhotoFile.FileName);
+                    string newFileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_" + pic;
 
-                    collection.PhotoFile.SaveAs(Path.Combine(Server.MapPath("~/Content/img"), pic));
-                    photoPath = "~/Content/img/" + pic;
+                    collection.PhotoFile.SaveAs(Path.Combine(Server.MapPath("~/Content/img"), newFileName));
+                    photoUrlToBeAssigned = "~/Content/img/" + newFileName;
                 };
 
                 var missingPersonToCreate = new MissingPersonModel()
@@ -56,7 +56,7 @@ namespace ProgramowanieInternetowe.Controllers
                     FirstName = collection.FirstName,
                     LastName = collection.LastName,
                     Gender = collection.Gender,
-                    PhotoUrl = photoPath
+                    PhotoUrl = photoUrlToBeAssigned
                 };
 
                 _db.MissingPersons.Add(missingPersonToCreate);
@@ -70,42 +70,45 @@ namespace ProgramowanieInternetowe.Controllers
             }
         }
 
-        private string FileUpload(HttpPostedFileBase file)
+        // GET: MissingPersons/Edit/5
+        public ActionResult Edit(int id)
         {
-            if (file == null)
-                return "~/Content/img/default.jpg";
-            else
-            {
-                string pic = Path.GetFileName(file.FileName);
-                string path = "~/Content/img" + pic;
+            var missingPerson = _db.MissingPersons.Where(p => p.Id == id).FirstOrDefault();
 
-                file.SaveAs(path);
-                return path;
-            }    
+            return View(missingPerson);
         }
 
+        // POST: MissingPersons/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, MissingPersonModel collection)
+        {
+            try
+            {
+                var missingPersonToEdit = _db.MissingPersons.Where(p => p.Id == id).FirstOrDefault();
 
-        //// GET: MissingPersons/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+                if (missingPersonToEdit != null)
+                {
+                    missingPersonToEdit.FirstName = collection.FirstName;
+                    missingPersonToEdit.LastName = collection.LastName;
+                    missingPersonToEdit.Gender = collection.Gender;
 
-        //// POST: MissingPersons/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
+                    if (collection.PhotoFile != null)
+                    {
+                        string pic = Path.GetFileName(collection.PhotoFile.FileName);
+                        string newFileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_" + pic;
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                        collection.PhotoFile.SaveAs(Path.Combine(Server.MapPath("~/Content/img"), newFileName));
+                        missingPersonToEdit.PhotoUrl = "~/Content/img/" + newFileName;
+                    };
+                }
+                _db.SaveChanges();
+                return RedirectToAction("Details", new { id });
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: MissingPersons/Delete/5
         //public ActionResult Delete(int id)
