@@ -13,11 +13,25 @@ namespace ProgramowanieInternetowe.Controllers
         private readonly ProgramowanieInternetoweDbContext _db = ProgramowanieInternetoweDbContext.Create();
 
         // GET: MissingPersons
-        public ActionResult Index()
+        public ActionResult Index(string genderFilter)
         {
-            var missingPersons = _db.MissingPersons.ToList();
+            var missingPersons = _db.MissingPersons.AsQueryable();
 
-            return View(missingPersons);
+            if (!string.IsNullOrEmpty(genderFilter))
+            {
+                switch (genderFilter)
+                {
+                    case "Male":
+                        missingPersons = missingPersons.Where(p => p.Gender == true);
+                        break;
+                    case "Female":
+                        missingPersons = missingPersons.Where(p => p.Gender == false);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return View(missingPersons.ToList());
         }
 
         // GET: MissingPersons/Details/5

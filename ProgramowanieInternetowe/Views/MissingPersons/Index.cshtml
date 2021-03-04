@@ -9,6 +9,22 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<div>
+    @using (Html.BeginForm("Index", "MissingPersons", FormMethod.Get))
+    {
+    <p>
+        Filter by gender: @Html.DropDownList(
+                               "genderFilter",
+                               new SelectList(new List<string>() { "Male", "Female" }),
+                               "Select Gender",
+                               new { @class = "form-control" }
+                            )
+        <input type="submit" value="Apply" />
+    </p>
+    }
+</div>
+
 <table class="table">
     <tr>
         <th>
