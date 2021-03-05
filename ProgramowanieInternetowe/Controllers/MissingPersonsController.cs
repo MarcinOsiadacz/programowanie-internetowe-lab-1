@@ -1,9 +1,7 @@
 ﻿using ProgramowanieInternetowe.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProgramowanieInternetowe.Controllers
@@ -43,6 +41,7 @@ namespace ProgramowanieInternetowe.Controllers
         }
 
         // GET: MissingPersons/Create
+        [Authorize(Roles = "Administrator, User")]
         public ActionResult Create()
         {
             return View();
@@ -50,6 +49,7 @@ namespace ProgramowanieInternetowe.Controllers
 
         // POST: MissingPersons/Create
         [HttpPost]
+        [Authorize(Roles = "Administrator, User")]
         public ActionResult Create(MissingPersonModel collection)
         {
             try
@@ -85,6 +85,7 @@ namespace ProgramowanieInternetowe.Controllers
         }
 
         // GET: MissingPersons/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
             var missingPerson = _db.MissingPersons.Where(p => p.Id == id).FirstOrDefault();
@@ -93,6 +94,7 @@ namespace ProgramowanieInternetowe.Controllers
         }
 
         // POST: MissingPersons/Edit/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult Edit(int id, MissingPersonModel collection)
         {
@@ -125,6 +127,7 @@ namespace ProgramowanieInternetowe.Controllers
         }
 
         // GET: MissingPersons/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {
             var missingPersonToEdit = _db.MissingPersons.Where(p => p.Id == id).FirstOrDefault();
@@ -133,6 +136,7 @@ namespace ProgramowanieInternetowe.Controllers
         }
 
         // POST: MissingPersons/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

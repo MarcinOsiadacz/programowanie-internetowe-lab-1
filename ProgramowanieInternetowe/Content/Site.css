@@ -22,3 +22,19 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.img-index {
+    width: 80px;
+    height: 80px;
+}
+
+.navbar {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: darkorange;
+    font-size: 12pt;
+    font-weight: bold;
+}
