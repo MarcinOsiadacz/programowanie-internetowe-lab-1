@@ -1,6 +1,39 @@
-﻿body {
+﻿.btn-default {
+    color: darkorange;
+    border-color: orange;
+    font-weight: bold;
+    text-align: center;
+}
+
+.glyphicon {
+    color: darkorange;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 14px;
+}
+
+a:hover .glyphicon {
+    text-decoration: none !important;
+}
+
+.btn-primary {
+    color: black;
+    background-color: darkorange;
+    border-color: orange;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+h1, h2, h3 {
+    color: darkorange;
+}
+
+.th-list {
+    color: darkorange;
+    text-align: left;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,9 +56,14 @@ textarea {
     max-width: 280px;
 }
 
+.image-nav {
+    width: 60px;
+    height: 60px;
+}
+
 .img-index {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
 .navbar {
@@ -35,6 +73,11 @@ textarea {
 
 .navbar-inverse .navbar-nav > li > a {
     color: darkorange;
-    font-size: 12pt;
     font-weight: bold;
 }
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: black;
+    font-weight: bold;
+}
+
