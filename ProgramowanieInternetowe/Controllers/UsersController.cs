@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ProgramowanieInternetowe.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class UsersController : Controller
     {
         private readonly ProgramowanieInternetoweDbContext _db = ProgramowanieInternetoweDbContext.Create();

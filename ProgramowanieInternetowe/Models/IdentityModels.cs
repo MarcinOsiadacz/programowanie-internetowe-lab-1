@@ -33,8 +33,6 @@ namespace ProgramowanieInternetowe.Models
 
         public DbSet<MissingPersonModel> MissingPersons { get; set; }
 
-        public System.Data.Entity.DbSet<ProgramowanieInternetowe.Models.ApplicationUser> ApplicationUsers { get; set; }
-
         // Wygenerowane automatycznie przez VS, przez to wywala exception w view
         // Multiple object sets per type are not supported. 
         // The object sets 'ApplicationUsers' and 'Users' can both contain instances of type 'ProgramowanieInternetowe.Models.ApplicationUser'.
